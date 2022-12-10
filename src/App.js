@@ -33,10 +33,11 @@ const App = () => {
 
   return (
     <section>
-     <h1>test</h1>
+     <h1>test 2 </h1>
       <h2> pin is : {pin}</h2>
     </section>
   );
 };
 
 export default App;
+

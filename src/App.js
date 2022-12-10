@@ -1,0 +1,35 @@
+import React, { useEffect, useState } from 'react';
+
+
+const App = () => {
+
+  const [pin, setPin] = useState('');
+  useEffect(() => {
+    if ('OTPCredential' in window) {
+      const ac = new AbortController();
+      navigator.credentials
+        .get({
+          otp: { transport: ['sms'] },
+          signal: ac.signal,
+        })
+        .then(otp => {
+          console.log({ otp });
+          setPin(otp.code);
+          ac.abort();
+        })
+        .catch(err => {
+          ac.abort();
+          console.log(err);
+        });
+    }
+  });
+
+  return (
+    <section>
+     <h1>test</h1>
+      <h2> pin is : {pin}</h2>
+    </section>
+  );
+};
+
+export default App;
